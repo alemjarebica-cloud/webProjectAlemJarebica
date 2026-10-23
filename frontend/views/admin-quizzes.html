@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Manage quizzes</h2>
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#quizModal">Add quiz</button>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <table class="table">
+      <thead><tr><th>Title</th><th>Category</th><th>Questions</th><th>Actions</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Space Basics</td><td>Science</td><td>10</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary">Questions</button>
+            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+            <button class="btn btn-sm btn-outline-danger">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>World War II</td><td>History</td><td>15</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary">Questions</button>
+            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+            <button class="btn btn-sm btn-outline-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="quizModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add quiz</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select class="form-select"><option>Science</option><option>History</option><option>Sports</option></select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
