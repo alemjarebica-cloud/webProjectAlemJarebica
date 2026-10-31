@@ -25,6 +25,9 @@ QuizHub is a single-page web application for creating and solving quizzes. Users
 8. From Milestone 5, only frontend service files communicate with the backend; views contain no AJAX calls.
 9. Error responses must not expose stack traces, SQL queries or file paths.
 10. Do not add libraries or frameworks that are not listed in the technology stack without asking.
+11. DAO classes extend BaseDao and pass only the table name and the list of allowed columns. BaseDao builds INSERT/UPDATE statements only from allowed columns, never from raw request keys.
+12. Database connections come only from Database::connect() (backend/config/Database.php), which reads credentials from config.php.
+13. The database schema lives in backend/database/quizhub.sql and must be kept in sync with the ERD in docs/erd.png.
 
 ## Folder structure
 
@@ -35,6 +38,7 @@ backend/
   dao/          database access (base DAO + one DAO per entity)
   middleware/   auth, role check, request logging, error handling
   config/       config.example.php (config.php is git-ignored)
+  database/     quizhub.sql (schema and sample data)
   logs/         info.log and error.log (git-ignored)
 frontend/
   css/  js/  views/  assets/
