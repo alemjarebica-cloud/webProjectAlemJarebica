@@ -38,7 +38,7 @@ Relationships:
 - **User**: browses and solves quizzes, sees own results and the leaderboard.
 - **Admin**: full CRUD over quizzes, questions, categories and users, plus question import from the external API.
 
-Test accounts: TODO (added in a later milestone).
+
 
 ## External API
 
@@ -46,15 +46,18 @@ Open Trivia DB (https://opentdb.com). Feature: admins fetch trivia questions by 
 
 ## Running the project locally
 
-Milestone 1 contains only the static frontend.
+1. Install XAMPP (PHP 8.2) into `C:\xampp` and start Apache and MySQL.
+2. Put the project into `C:\xampp\htdocs\webProjectAlemJarebica`.
+3. Open http://localhost/phpmyadmin, go to **Import** and import `backend/database/quizhub.sql`. This creates the `quizhub` database with sample data.
+4. Copy `backend/config/config.example.php` to `backend/config/config.php` and adjust the database credentials if needed (XAMPP default: user `root`, empty password).
+5. Open http://localhost/webProjectAlemJarebica/frontend/.
 
-```bash
-php -S localhost:8000 -t frontend
-```
+Test accounts (password for both: `Test1234!`):
 
-Then open http://localhost:8000/.
-
-Backend setup (importing the .sql file and creating `backend/config/config.php` from `config.example.php`): TODO (Milestone 2).
+| Role | Email |
+|---|---|
+| admin | admin@example.com |
+| user | test@example.com |
 
 ## Links
 
@@ -64,7 +67,7 @@ Backend setup (importing the .sql file and creating `backend/config/config.php` 
 ## Milestone status
 
 - [x] Milestone 1: project structure, static frontend, draft ERD
-- [ ] Milestone 2: database and DAO layer
+- [x] Milestone 2: database and DAO layer
 - [ ] Milestone 3: services, routes, OpenAPI, external API
 - [ ] Milestone 4: authentication, middleware, logging, connected frontend
 - [ ] Milestone 5: frontend MVC, validations, deployment
