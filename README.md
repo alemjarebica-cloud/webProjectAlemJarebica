@@ -75,6 +75,6 @@ Test accounts (password for both: `Test1234!`):
 
 - [x] Milestone 1: project structure, static frontend, draft ERD
 - [x] Milestone 2: database and DAO layer
-- [ ] Milestone 3: services, routes, OpenAPI, external API
+- [x] Milestone 3: services, routes, OpenAPI, external API
 - [ ] Milestone 4: authentication, middleware, logging, connected frontend
 - [ ] Milestone 5: frontend MVC, validations, deployment
