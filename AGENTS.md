@@ -28,6 +28,12 @@ QuizHub is a single-page web application for creating and solving quizzes. Users
 11. DAO classes extend BaseDao and pass only the table name and the list of allowed columns. BaseDao builds INSERT/UPDATE statements only from allowed columns, never from raw request keys.
 12. Database connections come only from Database::connect() (backend/config/Database.php), which reads credentials from config.php.
 13. The database schema lives in backend/database/quizhub.sql and must be kept in sync with the ERD in docs/erd.png.
+14. Routes only read the input (path, query, JSON body), call one service method and answer with Flight::json() and the right status code. No business rules, no SQL and no try/catch in routes.
+15. Services are the only layer that calls DAOs. They validate input with utils/Validator.php and throw HttpException subclasses (ValidationException 400, NotFoundException 404, ExternalServiceException 503). Services never read request data, echo output or choose HTTP status codes.
+16. Errors are handled in one place: Flight::map('error') in backend/index.php turns every exception into JSON. A 500 never exposes stack traces, SQL or file paths; details go to backend/logs/error.log through utils/Logger.php.
+17. External APIs are called only from the backend, in a service, with a timeout, a status check and a JSON check. Failures are logged and answered with a friendly 503. The API key lives in config.php, never in Git.
+18. Every route is documented with OpenAPI attributes in backend/docs/paths/ and every schema in backend/docs/doc_setup.php. Code and documentation are changed in the same commit.
+19. Test scripts (test-*.php) are for local use only and are never committed.
 
 ## Folder structure
 
@@ -39,6 +45,8 @@ backend/
   middleware/   auth, role check, request logging, error handling
   config/       config.example.php (config.php is git-ignored)
   database/     quizhub.sql (schema and sample data)
+  utils/        Validator, Logger, exceptions
+  docs/         OpenAPI: swagger.php, doc_setup.php, paths/ (Swagger UI at /backend/docs/)
   logs/         info.log and error.log (git-ignored)
 frontend/
   css/  js/  views/  assets/
