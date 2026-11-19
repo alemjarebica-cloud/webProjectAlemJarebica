@@ -1,3 +1,4 @@
 backend/config/config.php
 backend/logs/
 backend/vendor/
+test-*.php
