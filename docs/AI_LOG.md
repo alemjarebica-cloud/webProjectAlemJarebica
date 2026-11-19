@@ -58,7 +58,7 @@ I reinstalled XAMPP into the correct folder, imported the database in phpMyAdmin
 1. **Library version mismatch.** The lecture material and the AI's first answer assumed swagger-php 6.12 and the `Generator` class, but Composer installed 7.8.0, where `Builder` is the new entry point and classic attributes are deprecated. I noticed the version in the Composer output. We checked the 7.x documentation, and `swagger.php` now uses `Builder` and falls back to `Generator`.
 2. **Missing PHP extension.** `composer require` failed because the `zip` extension was not enabled in my `php.ini`. The AI had not checked this beforehand. I saw the error in the terminal, enabled `extension=zip` and ran `composer install`.
 3. **Documentation did not match the code.** The AI documented `PUT /users/{id}` with a required `password`, but `UserService` only requires it when creating a user. We noticed it while reviewing the docs. Fix: a separate `UserUpdate` schema with an optional password.
-4. **Test file staged for commit.** The AI did not tell me to ignore the test scripts, so `test-routes.php` appeared in `git status` as a file to commit. I noticed it in the status output, unstaged it and added `test-*.php` to `.gitignore`.
+4. **Test script was committed by mistake.** The AI told me to keep the local test scripts out of Git, but the `test-*.php` rule was missing from my `.gitignore`, so `test-routes.php` ended up in a commit. I noticed it in the VS Code explorer (the file was not greyed out like `config.php`), confirmed it with `git ls-files` and `git check-ignore`, added the rule and removed the file from the repository with `git rm --cached`.
 
 ### My own work
 
