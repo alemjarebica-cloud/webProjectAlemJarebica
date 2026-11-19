@@ -15,4 +15,10 @@ class QuizDao extends BaseDao
         $stmt->execute(['category_id' => $categoryId]);
         return $stmt->fetchAll();
     }
+        public function getByCreator(int $userId): array
+    {
+        $stmt = $this->db->prepare("SELECT * FROM quizzes WHERE created_by = :user_id ORDER BY id");
+        $stmt->execute(['user_id' => $userId]);
+        return $stmt->fetchAll();
+    }
 }
