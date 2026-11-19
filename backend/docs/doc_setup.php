@@ -21,6 +21,12 @@ use OpenApi\Attributes as OA;
     new OA\Property(property: 'password', type: 'string', example: 'Secret123!'),
     new OA\Property(property: 'role', type: 'string', enum: ['admin', 'user'], example: 'user'),
 ])]
+#[OA\Schema(schema: 'UserUpdate', required: ['name', 'email'], properties: [
+    new OA\Property(property: 'name', type: 'string', example: 'Amar Hadzic'),
+    new OA\Property(property: 'email', type: 'string', example: 'amar@example.com'),
+    new OA\Property(property: 'password', type: 'string', description: 'Optional. Leave it out to keep the current password.', example: 'NewSecret123!'),
+    new OA\Property(property: 'role', type: 'string', enum: ['admin', 'user'], example: 'user'),
+])]
 #[OA\Schema(schema: 'User', properties: [
     new OA\Property(property: 'id', type: 'integer', example: 1),
     new OA\Property(property: 'name', type: 'string', example: 'Amar Hadzic'),
