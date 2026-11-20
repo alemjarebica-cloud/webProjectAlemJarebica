@@ -42,15 +42,22 @@ Relationships:
 
 ## External API
 
-Open Trivia DB (https://opentdb.com). Feature: admins fetch trivia questions by amount, category and difficulty on the "Import questions" page and import them into a quiz.
+Open Trivia DB (https://opentdb.com). The backend calls it with a timeout and error handling and offers two endpoints: `GET /external/trivia/categories` and `GET /external/trivia/questions?amount=&category=&difficulty=`. Feature: on the "Import questions" admin page, admins fetch trivia questions and import them into a quiz (the page itself is connected to the API in Milestone 4). If the service is down, the API answers 503 with a friendly message and the rest of the application keeps working.
 
 ## Running the project locally
 
-1. Install XAMPP (PHP 8.2) into `C:\xampp` and start Apache and MySQL.
+1. Install XAMPP (PHP 8.2, with the `zip` and `curl` extensions enabled in `php.ini`) into `C:\xampp` and start Apache and MySQL.
 2. Put the project into `C:\xampp\htdocs\webProjectAlemJarebica`.
 3. Open http://localhost/phpmyadmin, go to **Import** and import `backend/database/quizhub.sql`. This creates the `quizhub` database with sample data.
 4. Copy `backend/config/config.example.php` to `backend/config/config.php` and adjust the database credentials if needed (XAMPP default: user `root`, empty password).
-5. Open http://localhost/webProjectAlemJarebica/frontend/.
+5. Install the backend libraries:
+
+   ```bash
+   cd backend
+   composer install
+   ```
+
+6. Open the frontend at http://localhost/webProjectAlemJarebica/frontend/ and the API at http://localhost/webProjectAlemJarebica/backend/ (for example `/categories`).
 
 Test accounts (password for both: `Test1234!`):
 
@@ -61,13 +68,13 @@ Test accounts (password for both: `Test1234!`):
 
 ## Links
 
-- Swagger documentation: TODO (Milestone 3)
+- Swagger documentation: http://localhost/webProjectAlemJarebica/backend/docs/ (local; the public link is added in Milestone 5)
 - Deployed application: TODO (Milestone 5)
 
 ## Milestone status
 
 - [x] Milestone 1: project structure, static frontend, draft ERD
 - [x] Milestone 2: database and DAO layer
-- [ ] Milestone 3: services, routes, OpenAPI, external API
+- [x] Milestone 3: services, routes, OpenAPI, external API
 - [ ] Milestone 4: authentication, middleware, logging, connected frontend
 - [ ] Milestone 5: frontend MVC, validations, deployment

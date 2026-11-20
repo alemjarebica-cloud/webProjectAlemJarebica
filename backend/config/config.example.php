@@ -12,6 +12,7 @@ return [
     'jwt_secret' => 'CHANGE_ME_TO_A_LONG_RANDOM_STRING',
     'external_api' => [
         'base_url' => 'https://opentdb.com',
-        'api_key'  => '', // Open Trivia DB does not need a key, left here for the template
+        'api_key'  => '', // Open Trivia DB needs no key; an API key would go here, never into Git
+        'timeout'  => 5,  // seconds, total time allowed for one request
     ],
 ];

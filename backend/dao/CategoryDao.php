@@ -8,4 +8,11 @@ class CategoryDao extends BaseDao
     {
         parent::__construct('categories', ['name']);
     }
+
+    public function getByName(string $name): ?array
+    {
+        $stmt = $this->db->prepare("SELECT * FROM categories WHERE name = :name");
+        $stmt->execute(['name' => $name]);
+        return $stmt->fetch() ?: null;
+    }
 }
